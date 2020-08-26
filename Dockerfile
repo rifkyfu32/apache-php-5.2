@@ -1,5 +1,11 @@
 FROM ubuntu:12.04
 
+# Config locale
+RUN locale-gen id_ID && \
+    locale-gen id_ID.UTF-8 && \
+    dpkg-reconfigure locales && \
+    update-locale LANG=id_ID.UTF-8 LC_TIME=id_ID.UTF-8 LC_ALL=id_ID.UTF-8 LANGUAGE=id_ID.UTF-8
+
 # Install apache
 RUN apt-get update && \
     RUNLEVEL=1 apt-get install -y --no-install-recommends \
